@@ -38,8 +38,8 @@ export default function Home() {
     <>
       {isModalOpen && indiChar && <ModalComponent isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} char={indiChar} />}
 
-      <div className="grid justify-center">
-        <div className="my-10 grid justify-center">
+      <div className="grid justify-center w-screen">
+        <div className="my-10 grid justify-center w-screen">
           <button onClick={backwardList} className="w-40 bg-black text-white">backward</button>
           <button onClick={forwardList} className="w-40 bg-black text-white">foreward</button>
         </div>
