@@ -20,3 +20,9 @@ interface ICharacterData {
     wizard: boolean,
     yearOfBirth: number
 }
+
+interface IModalProps {
+    isModalOpen: boolean,
+    setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
+    char: ICharacterData
+}

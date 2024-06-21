@@ -1,9 +1,5 @@
-const apiName: string = 'https://potterhead-api.vercel.app/';
-
-export const callAPI = async (route: string) => {
-    const promise = await fetch(apiName + route);
+export const callAPI = async () => {
+    const promise = await fetch('https://potterhead-api.vercel.app/api/characters');
     const data = await promise.json();
-    console.log(data);
-
     return data;
 }
