@@ -34,27 +34,41 @@ export default function Home() {
     saveData();
   }, []);
 
+  const stopScroll = () => {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+    window.onscroll = function () {
+      window.scrollTo(scrollLeft, scrollTop);
+    }
+  }
+
   return (
     <>
       {isModalOpen && indiChar && <ModalComponent isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} char={indiChar} />}
 
-      <div className="grid justify-center w-screen">
-        <div className="my-10 grid justify-center w-screen">
+      <div className="w-screen h-screen">
+        <div className="py-10 grid justify-center">
           <button onClick={backwardList} className="w-40 bg-black text-white">backward</button>
           <button onClick={forwardList} className="w-40 bg-black text-white">foreward</button>
         </div>
 
-        <div className="text-center">
+        <div className="grid justify-center text-center pb-10">
           {
-            allCharNames && allCharNames.map((char: ICharacterData, index: number) => {
+            allCharNames ? allCharNames.map((char: ICharacterData, index: number) => {
               if (displayNumStart <= index && index <= displayNumEnd) {
                 return (
-                  <div key={index}>
-                    <p onClick={() => { setIndiChar(char); setIsModalOpen(true); }}>{char.name}</p>
+                  <div className="py-3 my-1 bg-black bg-opacity-45 rounded-3xl w-52" key={index}>
+                    <p className="text-white" onClick={() => { setIndiChar(char); setIsModalOpen(true); stopScroll(); }}>{char.name}</p>
                   </div>
                 )
               }
             })
+              :
+              <div className="py-3 my-1 bg-black bg-opacity-45 rounded-3xl w-52">
+                <p className="text-white">Loading...</p>
+              </div>
           }
         </div>
       </div>
